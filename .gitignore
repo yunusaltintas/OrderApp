@@ -12,3 +12,4 @@
 /src/Infrastructure/CurrencyRate.Persistence/obj
 /src/Presentation/CurrencyRate.API/bin/Debug/net6.0
 /src/Presentation/CurrencyRate.API/obj
+/.vs
