@@ -1,0 +1,14 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/src/Core/CurrencyRate.Application/bin/Debug/net6.0
+/src/Core/CurrencyRate.Application/obj
+/src/Core/CurrencyRate.Domain/bin/Debug/net6.0
+/src/Core/CurrencyRate.Domain/obj
+/src/Infrastructure/CurrencyRate.Infrastructure/bin/Debug/net6.0
+/src/Infrastructure/CurrencyRate.Infrastructure/obj
+/src/Infrastructure/CurrencyRate.Persistence/bin/Debug/net6.0
+/src/Infrastructure/CurrencyRate.Persistence/obj
+/src/Presentation/CurrencyRate.API/bin/Debug/net6.0
+/src/Presentation/CurrencyRate.API/obj
