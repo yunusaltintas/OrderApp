@@ -6,6 +6,8 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DB4DB2A5-4086-414F-AA03-92740905C562}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		src\docker-compose.yml = src\docker-compose.yml
+		src\Dockerfile = src\Dockerfile
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{1FCC4657-5212-41E9-B1E9-3907C75E15EE}"

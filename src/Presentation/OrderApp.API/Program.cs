@@ -2,15 +2,19 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using OrderApp.Application;
 using OrderApp.Application.Dtos.Requests.Validator;
+using OrderApp.Application.Extension;
 using OrderApp.Application.Filters;
 using OrderApp.Application.Middlewares;
 using OrderApp.Application.SystemsModels;
 using OrderApp.Infrastructure;
 using OrderApp.Persistence;
+using Serilog;
 using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
+SeriLogExtension.ConfigureLoggin();
+builder.Host.UseSerilog();
 
 builder.Services.AddControllers(o =>
 {
