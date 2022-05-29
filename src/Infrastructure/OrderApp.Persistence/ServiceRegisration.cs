@@ -17,8 +17,6 @@ namespace OrderApp.Persistence
     {
         public static void AddPersistanceServices(this IServiceCollection services, string connectionString)
         {
-            //services.AddDbContext<ECommerceDbContext>(options => options.UseSqlServer(connectionString), ServiceLifetime.Scoped);
-
             services.AddDbContextPool<ECommerceDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
             services.AddScoped<IUnitOfWork, OrderApp.Persistence.UnitOfWork.UnitOfWork>();

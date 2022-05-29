@@ -37,7 +37,10 @@ builder.Services.AddApplicationRegistration();
 builder.Services.AddPersistanceServices(builder.Configuration.GetConnectionString("DefaultConnection"));
 builder.Services.AddInfrastructureServices();
 
-var multiplexer = ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString("Redis"));
+var multiplexer = ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString("Redis"), p =>
+{
+    p.AbortOnConnectFail = false;
+});
 builder.Services.AddSingleton<IConnectionMultiplexer>(multiplexer);
 
 var app = builder.Build();

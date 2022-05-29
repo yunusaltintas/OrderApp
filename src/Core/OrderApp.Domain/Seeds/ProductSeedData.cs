@@ -21,15 +21,15 @@ namespace OrderApp.Domain.Seeds
         public ProductSeedData()
         {
             this.Products = new List<Product>();
-            this.Description = new string[3] { "Giyilir", "Yenir", "Kulanılır" };
-            this.Category = new string[3] { "Kıyafet", "Yumurta", "Bardak" };
+            this.Description = new string[3] { "Wear", "Eat", "Use" };
+            this.Category = new string[3] { "Dresses", "Food", "Accessory" };
             this.Unit = "4141";
             this.UnitPrice = new decimal[3] { 41, 57, 51 };
             this.Status = new bool[3] { true, false, true };
 
             Random random = new Random();
 
-            for (int i = 1; i < 1000; i++)
+            for (int i = 1; i < 350; i++)
             {
                 int index = random.Next(3);
 
