@@ -21,6 +21,8 @@ namespace OrderApp.Infrastructure
 
             services.AddScoped<IMessageProducer, RabbitMQProducer>();
             services.AddSingleton<IHostedService, MailSenderBackgroundService>();
+
+            services.AddSingleton<ICacheService, RedisCacheService>();
         }
     }
 }

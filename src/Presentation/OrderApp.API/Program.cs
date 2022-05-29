@@ -7,6 +7,7 @@ using OrderApp.Application.Middlewares;
 using OrderApp.Application.SystemsModels;
 using OrderApp.Infrastructure;
 using OrderApp.Persistence;
+using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +32,9 @@ builder.Services.Configure<SmtpSystemModel>(builder.Configuration.GetSection("Sm
 builder.Services.AddApplicationRegistration();
 builder.Services.AddPersistanceServices(builder.Configuration.GetConnectionString("DefaultConnection"));
 builder.Services.AddInfrastructureServices();
+
+var multiplexer = ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString("Redis"));
+builder.Services.AddSingleton<IConnectionMultiplexer>(multiplexer);
 
 var app = builder.Build();
 

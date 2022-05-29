@@ -51,6 +51,7 @@ namespace OrderApp.Infrastructure.Services.BackgroundService
                         var body = ea.Body.ToArray();
                         var message = Encoding.UTF8.GetString(body);
                         var orderModel = JsonConvert.DeserializeObject<CreateOrderRequest>(message);
+
                         SendMail(orderModel);
                     };
 

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using OrderApp.Application.Dtos;
 using OrderApp.Application.Dtos.BaseResponse;
 using OrderApp.Application.Interfaces.IService;
+using OrderApp.Domain.Entities;
 using System.Net;
 
 namespace OrderApp.API.Controllers
@@ -13,15 +14,18 @@ namespace OrderApp.API.Controllers
     {
         private readonly IProductService _productService;
         private readonly IMapper _mapper;
-        public ProductController(IProductService productService, IMapper mapper)
+        private readonly ICacheService _cache;
+        public ProductController(IProductService productService, IMapper mapper, ICacheService cache)
         {
             _productService = productService;
             _mapper = mapper;
+            _cache = cache;
         }
         [HttpGet]
         public async Task<ActionResult<CustomResponseDto<List<ProductDto>>>> GetProducts(string? category)
         {
-            var resultList =await _productService.GetProductsAsync(category);
+            string cacheKey = "Products" + category;
+            var resultList = await _cache.GetOrAddAsync<List<Product>>(cacheKey, async () => await _productService.GetProductsAsync(category));
 
             if (resultList is null)
                 return new NoContentResult();
