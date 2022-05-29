@@ -26,10 +26,12 @@ namespace OrderApp.Infrastructure.Services
             _mapper = mapper;
         }
 
-        public async Task CreateOrderAsync(CreateOrderRequest request)
+        public async Task<int> CreateOrderAsync(CreateOrderRequest request)
         {
-            await _baseRepository.AddAsync(_mapper.Map<Order>(request));
+            var model = await _baseRepository.AddAsync(_mapper.Map<Order>(request));
             await _unitOfWork.CommitAsync();
+
+            return model.Id;
         }
     }
 }

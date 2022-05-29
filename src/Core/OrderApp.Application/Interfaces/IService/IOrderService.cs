@@ -9,6 +9,6 @@ namespace OrderApp.Application.Interfaces.IService
 {
     public interface IOrderService
     {
-        Task CreateOrderAsync(CreateOrderRequest request);
+        Task<int> CreateOrderAsync(CreateOrderRequest request);
     }
 }

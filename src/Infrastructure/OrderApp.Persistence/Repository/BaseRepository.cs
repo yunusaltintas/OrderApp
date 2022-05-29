@@ -20,9 +20,10 @@ namespace OrderApp.Persistence.Repository
             _context = context;
             _dbSet = context.Set<TEntity>();
         }
-        public async Task AddAsync(TEntity entity)
+        public async Task<TEntity> AddAsync(TEntity entity)
         {
-            await _dbSet.AddAsync(entity);
+            var result = await _dbSet.AddAsync(entity);
+            return result.Entity;
         }
 
         public async Task AddRangeAsync(IEnumerable<TEntity> entities)

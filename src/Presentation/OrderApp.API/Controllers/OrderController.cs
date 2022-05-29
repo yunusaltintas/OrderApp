@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OrderApp.Application.Dtos.BaseResponse;
 using OrderApp.Application.Dtos.Requests;
 using OrderApp.Application.Filters;
 using OrderApp.Application.Interfaces.IService;
+using System.Net;
 
 namespace OrderApp.API.Controllers
 {
@@ -20,13 +22,13 @@ namespace OrderApp.API.Controllers
 
         [ValidationFilter]
         [HttpPost]
-        public async Task CreateOrder(CreateOrderRequest request)
+        public async Task<ActionResult<CustomResponseDto<OrderDto>>> CreateOrder(CreateOrderRequest request)
         {
-           await _orderService.CreateOrderAsync(request);
+            var id = await _orderService.CreateOrderAsync(request);
 
             _messagePublisher.SendMessage(request);
 
-            //return Ok(new { id = request.Id });
+            return new CustomResponseDto<OrderDto>().Success((int)HttpStatusCode.OK, new OrderDto { Id = id });
         }
     }
 }
