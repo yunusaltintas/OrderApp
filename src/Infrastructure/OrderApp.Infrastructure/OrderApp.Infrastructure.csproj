@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\Core\OrderApp.Application\OrderApp.Application.csproj" />
     <ProjectReference Include="..\OrderApp.Persistence\OrderApp.Persistence.csproj" />
   </ItemGroup>

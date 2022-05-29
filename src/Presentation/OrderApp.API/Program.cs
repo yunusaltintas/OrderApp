@@ -2,14 +2,19 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using OrderApp.Application;
 using OrderApp.Application.Dtos.Requests.Validator;
+using OrderApp.Application.Filters;
 using OrderApp.Application.Middlewares;
+using OrderApp.Application.SystemsModels;
 using OrderApp.Infrastructure;
 using OrderApp.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Services.AddControllers().AddFluentValidation(v =>
+builder.Services.AddControllers(o =>
+{
+    o.Filters.Add(new ValidationFilter());
+}).AddFluentValidation(v =>
 {
     v.RegisterValidatorsFromAssemblyContaining<CreateOrderRequestValidator>();
 });
@@ -19,6 +24,9 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.Configure<RabbitMqSystemModel>(builder.Configuration.GetSection("RabbitMqSystemModel"));
+builder.Services.Configure<SmtpSystemModel>(builder.Configuration.GetSection("SmtpSystemModel"));
 
 builder.Services.AddApplicationRegistration();
 builder.Services.AddPersistanceServices(builder.Configuration.GetConnectionString("DefaultConnection"));

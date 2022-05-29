@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using Newtonsoft.Json;
 using OrderApp.Application.Dtos.Requests;
 using OrderApp.Application.Interfaces.IRepository;
 using OrderApp.Application.Interfaces.IService;
 using OrderApp.Application.Interfaces.IUnitOfWork;
 using OrderApp.Domain.Entities;
+using RabbitMQ.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
