@@ -5,7 +5,7 @@ VisualStudioVersion = 17.2.32516.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DB4DB2A5-4086-414F-AA03-92740905C562}"
 	ProjectSection(SolutionItems) = preProject
-		src\gitignore = src\gitignore
+		.gitignore = .gitignore
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{1FCC4657-5212-41E9-B1E9-3907C75E15EE}"
@@ -14,15 +14,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{C08641E7-D52C-4F26-B3E4-04126386F6E8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderApp.Application", "src\Core\CurrencyRate.Application\OrderApp.Application.csproj", "{9B6771C9-36C3-4549-A2E4-0DDC923C9737}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderApp.Application", "src\Core\OrderApp.Application\OrderApp.Application.csproj", "{9B6771C9-36C3-4549-A2E4-0DDC923C9737}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderApp.Domain", "src\Core\CurrencyRate.Domain\OrderApp.Domain.csproj", "{DC25AB22-9237-44A4-9F1C-68BD0D57FC99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderApp.Domain", "src\Core\OrderApp.Domain\OrderApp.Domain.csproj", "{DC25AB22-9237-44A4-9F1C-68BD0D57FC99}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderApp.Infrastructure", "src\Infrastructure\CurrencyRate.Infrastructure\OrderApp.Infrastructure.csproj", "{571BEB91-7442-4739-BEA7-9F8A0DF627A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderApp.Infrastructure", "src\Infrastructure\OrderApp.Infrastructure\OrderApp.Infrastructure.csproj", "{571BEB91-7442-4739-BEA7-9F8A0DF627A2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderApp.Persistence", "src\Infrastructure\CurrencyRate.Persistence\OrderApp.Persistence.csproj", "{4AAC79C4-0218-4583-BE23-1BE121C217EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderApp.Persistence", "src\Infrastructure\OrderApp.Persistence\OrderApp.Persistence.csproj", "{4AAC79C4-0218-4583-BE23-1BE121C217EE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderApp.API", "src\Presentation\CurrencyRate.API\OrderApp.API.csproj", "{739A9D9B-77EB-4BA2-BED2-50AE1E0F0133}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderApp.API", "src\Presentation\OrderApp.API\OrderApp.API.csproj", "{739A9D9B-77EB-4BA2-BED2-50AE1E0F0133}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

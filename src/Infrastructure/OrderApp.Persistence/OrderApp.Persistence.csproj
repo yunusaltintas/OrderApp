@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\CurrencyRate.Application\OrderApp.Application.csproj" />
+    <ProjectReference Include="..\..\Core\OrderApp.Application\OrderApp.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -13,3 +13,14 @@
 /src/Presentation/CurrencyRate.API/bin/Debug/net6.0
 /src/Presentation/CurrencyRate.API/obj
 /.vs
+
+/src/Core/OrderApp.Application/bin/Debug/net6.0
+/src/Core/OrderApp.Application/obj
+/src/Core/OrderApp.Domain/bin/Debug/net6.0
+/src/Core/OrderApp.Domain/obj
+/src/Infrastructure/OrderApp.Infrastructure/bin/Debug/net6.0
+/src/Infrastructure/OrderApp.Infrastructure/obj
+/src/Infrastructure/OrderApp.Persistence/bin/Debug/net6.0
+/src/Infrastructure/OrderApp.Persistence/obj
+/src/Presentation/OrderApp.API/bin/Debug/net6.0
+/src/Presentation/OrderApp.API/obj

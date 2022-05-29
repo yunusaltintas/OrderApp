@@ -15,8 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\CurrencyRate.Application\OrderApp.Application.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\CurrencyRate.Infrastructure\OrderApp.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Core\OrderApp.Application\OrderApp.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\OrderApp.Infrastructure\OrderApp.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

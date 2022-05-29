@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\CurrencyRate.Application\OrderApp.Application.csproj" />
-    <ProjectReference Include="..\CurrencyRate.Persistence\OrderApp.Persistence.csproj" />
+    <ProjectReference Include="..\..\Core\OrderApp.Application\OrderApp.Application.csproj" />
+    <ProjectReference Include="..\OrderApp.Persistence\OrderApp.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
