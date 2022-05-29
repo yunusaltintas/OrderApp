@@ -1,6 +1,50 @@
-version: '3.1'
+version: '3.8'
 
 services:
+
+  orderapp:
+    container_name: orderapp
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ynsdc/orderapp
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings:Redis=localhost:6379,abortConnect=false
+    ports:
+      - "80:80"
+  web:
+    build: .
+    ports:
+       - "5000:80"
+    depends_on:
+       - db
+       - dev-redis
+
+  rabbitmq:
+    container_name: "myrabbit1"
+    image: rabbitmq:3-management
+    environment:
+     - RABBITMQ_DEFAULT_USER=admin
+     - RABBITMQ_DEFAULT_PASS=123456
+    ports:
+     - '5672:5672'
+     - '15672:15672'
+
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Admin12*
+    ports:
+      - 3306:3306
+
+  dev-redis:
+    image: redis
+    restart: on-failure
+    ports:
+      - "6379:6379"
 
   elasticsearch:
    container_name: elasticsearch
