@@ -11,6 +11,7 @@ Used Technologies:
 * RabbitMQ,
 * Serilog, Elasticsearch, Kibana
 * AutoMapper, 
+* Docker
 
 Best Practices: 
 
