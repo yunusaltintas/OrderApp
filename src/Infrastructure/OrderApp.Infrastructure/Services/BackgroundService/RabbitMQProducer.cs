@@ -14,32 +14,29 @@ namespace OrderApp.Infrastructure.Services.BackgroundService
     public class RabbitMQProducer : IMessageProducer
     {
         private readonly RabbitMqSystemModel _rabbitMqSystemModel;
-        public RabbitMQProducer(IOptions<RabbitMqSystemModel> options)
+        private readonly RabbitMQConnectionManager _rabbitMQConnectionManager;
+        public RabbitMQProducer(IOptions<RabbitMqSystemModel> options, RabbitMQConnectionManager rabbitMQConnectionManager)
         {
             _rabbitMqSystemModel = options.Value;
+            _rabbitMQConnectionManager = rabbitMQConnectionManager;
         }
         public void SendMessage<T>(T message)
         {
-            var factory = new ConnectionFactory() { 
-                HostName = _rabbitMqSystemModel.HostName, 
-                UserName = _rabbitMqSystemModel.UserName,
-                Password = _rabbitMqSystemModel.Password };
-            using (IConnection connection = factory.CreateConnection())
-            using (IModel channel = connection.CreateModel())
-            {
-                channel.QueueDeclare(queue: _rabbitMqSystemModel.QueueName,
-                    durable: false,
-                    exclusive: false,
-                    autoDelete: false,
-                    arguments: null);
+            var channel = _rabbitMQConnectionManager.CreateConnection();
 
-                string jsonMessage = JsonConvert.SerializeObject(message);
-                var body = Encoding.UTF8.GetBytes(jsonMessage);
+            channel.QueueDeclare(queue: _rabbitMqSystemModel.QueueName,
+                durable: false,
+                exclusive: false,
+                autoDelete: false,
+                arguments: null);
 
-                channel.BasicPublish(exchange: _rabbitMqSystemModel.Exchange,
-                    routingKey: _rabbitMqSystemModel.QueueName,
-                    body: body);
-            }
+            string jsonMessage = JsonConvert.SerializeObject(message);
+            var body = Encoding.UTF8.GetBytes(jsonMessage);
+
+            channel.BasicPublish(exchange: _rabbitMqSystemModel.Exchange,
+                routingKey: _rabbitMqSystemModel.QueueName,
+                body: body);
+
         }
     }
 }

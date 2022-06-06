@@ -23,6 +23,8 @@ namespace OrderApp.Infrastructure
             services.AddSingleton<IHostedService, MailSenderBackgroundService>();
 
             services.AddSingleton<ICacheService, RedisCacheService>();
+
+            services.AddSingleton<RabbitMQConnectionManager>();
         }
     }
 }

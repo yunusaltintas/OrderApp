@@ -18,47 +18,44 @@ namespace OrderApp.Infrastructure.Services.BackgroundService
     {
         private readonly RabbitMqSystemModel _rabbitMqSystemModel;
         private readonly SmtpSystemModel _smtpSystemModel;
+        private readonly RabbitMQConnectionManager _rabbitMQConnectionManager;
+
         public MailSenderBackgroundService(
             IOptions<RabbitMqSystemModel> optionsRabbit,
-            IOptions<SmtpSystemModel> optionsSmtp)
+            IOptions<SmtpSystemModel> optionsSmtp,
+            RabbitMQConnectionManager rabbitMQConnectionManager)
         {
             _rabbitMqSystemModel = optionsRabbit.Value;
             _smtpSystemModel = optionsSmtp.Value;
+            _rabbitMQConnectionManager = rabbitMQConnectionManager;
         }
 
         protected override async Task ExecuteAsync(CancellationToken cToken)
         {
             while (!cToken.IsCancellationRequested)
             {
-                var factory = new ConnectionFactory()
-                {
-                    HostName = _rabbitMqSystemModel.HostName,
-                    UserName = _rabbitMqSystemModel.UserName,
-                    Password = _rabbitMqSystemModel.Password
-                };
-                using (IConnection connection = factory.CreateConnection())
-                using (IModel channel = connection.CreateModel())
-                {
-                    channel.QueueDeclare(queue: _rabbitMqSystemModel.QueueName,
+                var channel = _rabbitMQConnectionManager.CreateConnection();
+
+                channel.QueueDeclare(queue: _rabbitMqSystemModel.QueueName,
                     durable: false,
                     exclusive: false,
                     autoDelete: false,
                     arguments: null);
 
-                    var consumer = new EventingBasicConsumer(channel);
-                    consumer.Received += (model, ea) =>
-                    {
-                        var body = ea.Body.ToArray();
-                        var message = Encoding.UTF8.GetString(body);
-                        var orderModel = JsonConvert.DeserializeObject<CreateOrderRequest>(message);
+                var consumer = new EventingBasicConsumer(channel);
+                consumer.Received += (model, ea) =>
+                {
+                    var body = ea.Body.ToArray();
+                    var message = Encoding.UTF8.GetString(body);
+                    var orderModel = JsonConvert.DeserializeObject<CreateOrderRequest>(message);
 
-                        SendMail(orderModel);
-                    };
+                    SendMail(orderModel);
+                };
 
-                    channel.BasicConsume(queue: _rabbitMqSystemModel.QueueName,
-                        autoAck: true,
-                        consumer: consumer);
-                }
+                channel.BasicConsume(queue: _rabbitMqSystemModel.QueueName,
+                    autoAck: true,
+                    consumer: consumer);
+
 
                 await Task.Delay(TimeSpan.FromSeconds(10), cToken);
             }
